@@ -1,4 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Hey am working</h1>
+    <div class="container">
+    {% for prof in profile %}
+        <div class="row">
+            <div class="col-md-3 col-sm-2">
+                {% if prof.profilePic %}
+                    <img src="{{prof.profilePic.url}}" alt="" class="rounded-circle">
+                {% else %}
+                    <img src="/static/img/avatar.png" alt="stat" class="rounded-circle"/>
+                {% endif %}
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-5 col-sm-8 mt-5">
+                <p>{{prof.user | title}}</p>
+                <p>{{prof.bio}}</p>
+            </div>
+
+        </div>
+        <hr>
+    {% endfor %}
+    </div>
 {% endblock %}
