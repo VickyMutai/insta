@@ -14,4 +14,4 @@ def home(request):
                                         "images":image,})
 
 def profile(request):
-    return render(request,'index.html')
+    return render(request,'profile/profile.html')

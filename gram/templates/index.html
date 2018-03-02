@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
+        <button class="btn btn-info"><a href="{% url 'profile' %}">View Profile</a></button>
     <h1 class="text-center">{{test}}</h1>
 
     {% if user.is_authenticated %}
