@@ -3,6 +3,12 @@
 <div class="container">
     <h1 class="text-center">{{test}}</h1>
 
+    {% if user.is_authenticated %}
+        <button class="btn btn-info">
+            <a href="/logout">LogOut</a>
+        </button>
+    {% endif %}
+
     {% for img in images %}
         {% if img.image %}
             <img src="{{img.image.url}}" alt="Image"/>
