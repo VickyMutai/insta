@@ -80,7 +80,9 @@ WSGI_APPLICATION = 'insta.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'instagram'
+        'NAME': 'instagram',
+        'USER': 'vicky',
+        'PASSWORD': '0716889165',
     }
 }
 db_from_env = dj_database_url.config(conn_max_age=500)
@@ -111,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
