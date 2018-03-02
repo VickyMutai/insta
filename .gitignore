@@ -1,0 +1,3 @@
+*.pyc
+virtual/
+db.sqlite3
