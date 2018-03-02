@@ -7,6 +7,10 @@
         <button class="btn btn-info">
             <a href="/logout">LogOut</a>
         </button>
+    {% else %}
+    <button class="btn btn-info">
+            <a href="/accounts/login/">Login</a>
+    </button>
     {% endif %}
 
     {% for img in images %}
