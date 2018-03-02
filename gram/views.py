@@ -16,4 +16,11 @@ def home(request):
 def profile(request):
     title = 'Insta-Gram'
     profile = Profile.objects.all()
-    return render(request,'profile/profile.html',{"title":title,"profile":profile})
+    return render(request,'profile/profile.html',{"title":title,
+                                                "profile":profile})
+
+def settings(request):
+    title = 'Insta-Gram'
+    settings = Profile.objects.all()
+    return render(request,'profile/settings.html',{"settings":settings,
+                                                    "title":title})
