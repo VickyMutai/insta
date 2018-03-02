@@ -2,5 +2,15 @@
 {% block content %}
 <div class="container">
     <h1 class="text-center">{{test}}</h1>
+
+    {% for img in images %}
+        {% if img.image %}
+            <img src="{{img.image.url}}" alt="Image"/>
+            <p>{{img.caption}}</p>
+        {% endif %}
+    {% empty %}
+    <p>No images currently</p>
+    {% endfor %}
+
 </div>
 {% endblock %}
