@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse,Http404
 from .models import Image,Profile,Comment
+from .forms import EditProfileForm
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
@@ -26,5 +27,16 @@ def profile(request):
 def settings(request):
     title = 'Insta-Gram'
     settings = Profile.get_profile()
+    current_user = request.user
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST,request.FILES)
+        if form.is_valid():
+            update = form.save(commit=False)
+            update.user = current_user
+            update.save()
+    else:
+        form = EditProfileForm()
+        
     return render(request,'profile/settings.html',{"settings":settings,
-                                                    "title":title})
+                                                    "title":title,
+                                                    "form":form,})
