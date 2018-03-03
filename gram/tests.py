@@ -33,11 +33,16 @@ class ProfileTestClass(TestCase):
         profiles = Profile.objects.all()
         self.assertTrue(len(profiles)<1)
 
-    def test_find_image(self):
+    def test_find_profile(self):
         self.vicky.save_profile()
         me = Profile.objects.all()
         profiles = Profile.find_profile('vic')
         self.assertEqual(profiles,profiles)
+
+    def test_get_profile(self):
+        self.vicky.save_profile()
+        prof = Profile.get_profile()
+        self.assertEqual(len(prof),1)    
 
 class ImageTestClass(TestCase):
     def setUp(self):
@@ -108,3 +113,8 @@ class CommentTestClass(TestCase):
         self.new_comment.delete_comment()
         comments = Comment.objects.all()
         self.assertTrue(len(comments)<1)
+
+    def test_get_comment(self):
+        self.new_comment.save_comment()
+        comment = Comment.get_comment()
+        self.assertEqual(len(comment),1)
