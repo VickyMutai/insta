@@ -27,7 +27,11 @@ class ProfileTestClass(TestCase):
         profiles = Profile.objects.all()
         self.assertTrue(len(profiles)>0)
         
-
+    def test_delete_profile(self):
+        self.vicky.save_profile()
+        self.vicky.delete_profile()
+        profiles = Profile.objects.all()
+        self.assertTrue(len(profiles)<1)
 
 class ImageTestClass(TestCase):
     def setUp(self):
@@ -51,6 +55,13 @@ class ImageTestClass(TestCase):
     def test_save_image(self):
         images = Image.objects.all()
         self.assertTrue(len(images)>0)
+
+    def test_delete_image(self):
+        self.car.save_image()
+        self.car.delete_image()
+        images = Image.objects.all()
+        self.assertTrue(len(images)<1)
+
 
 class CommentTestClass(TestCase):
     def setUp(self):
@@ -77,3 +88,9 @@ class CommentTestClass(TestCase):
     def test_save_comment(self):
         comments = Comment.objects.all()
         self.assertTrue(len(comments)>0)
+
+    def test_delete_comment(self):
+        self.new_comment.save_comment()
+        self.new_comment.delete_comment()
+        comments = Comment.objects.all()
+        self.assertTrue(len(comments)<1)

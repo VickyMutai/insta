@@ -14,6 +14,9 @@ class Profile(models.Model):
     def save_profile(self):
         self.save()
 
+    def delete_profile(self):
+        self.delete()
+
 class Image(models.Model):
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
     caption = models.CharField(max_length = 60)
@@ -29,6 +32,9 @@ class Image(models.Model):
     def save_image(self):
         self.save()
 
+    def delete_image(self):
+        self.delete()
+
 class Comment(models.Model):
     comments = models.CharField(max_length=60,blank=True,null=True)
     comment_date = models.DateTimeField(auto_now_add=True)
@@ -40,3 +46,6 @@ class Comment(models.Model):
 
     def save_comment(self):
         return self.save()
+
+    def delete_comment(self):
+        self.delete()
