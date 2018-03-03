@@ -33,6 +33,12 @@ class ProfileTestClass(TestCase):
         profiles = Profile.objects.all()
         self.assertTrue(len(profiles)<1)
 
+    def test_find_image(self):
+        self.vicky.save_profile()
+        me = Profile.objects.all()
+        profiles = Profile.find_profile('vic')
+        self.assertEqual(profiles,profiles)
+
 class ImageTestClass(TestCase):
     def setUp(self):
         #set up user class

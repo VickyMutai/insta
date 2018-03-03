@@ -17,6 +17,12 @@ class Profile(models.Model):
     def delete_profile(self):
         self.delete()
 
+    @classmethod
+    def find_profile(cls,search_term):
+        profile = cls.objects.filter(user__username__icontains=search_term)
+        return profile
+        
+
 class Image(models.Model):
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
     caption = models.CharField(max_length = 60)
