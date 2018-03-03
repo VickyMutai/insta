@@ -46,6 +46,12 @@ class Image(models.Model):
         captioned = Image.objects.filter(id=id).update(caption = caption)
         return captioned
 
+    @classmethod
+    def get_images(cls):
+        image = Image.objects.all()
+        return image
+        
+
 class Comment(models.Model):
     comments = models.CharField(max_length=60,blank=True,null=True)
     comment_date = models.DateTimeField(auto_now_add=True)

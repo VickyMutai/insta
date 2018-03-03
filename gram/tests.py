@@ -68,6 +68,10 @@ class ImageTestClass(TestCase):
         images = Image.objects.all()
         self.assertTrue(len(images)<1)
 
+    def test_get_images(self):
+        self.car.save_image()
+        images = Image.get_images()
+        self.assertEqual(len(images),1)
 
 class CommentTestClass(TestCase):
     def setUp(self):
