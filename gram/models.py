@@ -41,6 +41,11 @@ class Image(models.Model):
     def delete_image(self):
         self.delete()
 
+    @classmethod
+    def update_caption(cls,id,caption):
+        captioned = Image.objects.filter(id=id).update(caption = caption)
+        return captioned
+
 class Comment(models.Model):
     comments = models.CharField(max_length=60,blank=True,null=True)
     comment_date = models.DateTimeField(auto_now_add=True)
