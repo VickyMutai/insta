@@ -19,7 +19,7 @@ def profile(request):
     title = 'Insta-Gram'
     profile = Profile.get_profile()
     return render(request,'profile/profile.html',{"title":title,
-                                                "profile":profile})
+                                                "profile":profile,})
 
 
 @login_required(login_url='/accounts/login/')
