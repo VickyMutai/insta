@@ -54,7 +54,26 @@ class ImageTestClass(TestCase):
 
 class CommentTestClass(TestCase):
     def setUp(self):
-        self.love=Comment(comments="I love! All the best")
+        #set up user class
+        self.new_user = User(username="vic",email="vic@mail.com")
+        self.new_user.save()
+        #set up for profile class
+        self.new_profile=Profile(bio="I am awesome",user=self.new_user)
+        self.new_profile.save()
+        #set up for Image class
+        self.car=Image(caption="legacy goals",likes=200,profile=self.new_profile)
+        self.car.save()
+        #set up for comment class
+        self.new_comment=Comment(comments="I love! All the best",user=self.new_user,image=self.car)
+        self.new_comment.save_comment()
+
+    def tearDown(self):
+        Image.objects.all().delete()
+        User.objects.all().delete()
 
     def test_instance(self):
-        self.assertTrue(isinstance(self.love,Comment))
+        self.assertTrue(isinstance(self.new_comment,Comment))
+
+    def test_save_comment(self):
+        comments = Comment.objects.all()
+        self.assertTrue(len(comments)>0)
