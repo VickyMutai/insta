@@ -50,7 +50,11 @@ class Image(models.Model):
     def get_images(cls):
         image = Image.objects.all()
         return image
-        
+
+    @classmethod
+    def get_image_by_id(cls,id):
+        image = Image.objects.filter(id=Image.id)
+        return image        
 
 class Comment(models.Model):
     comments = models.CharField(max_length=60,blank=True,null=True)

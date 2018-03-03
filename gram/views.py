@@ -8,7 +8,7 @@ from .models import Image,Profile
 def home(request):
     title = 'Insta-Gram'
     test =  'Awesomeness'
-    image = Image.objects.all()
+    image = Image.get_images()
     return render(request,'index.html',{"title":title,
                                         "test":test,
                                         "images":image,})

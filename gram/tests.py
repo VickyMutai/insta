@@ -73,6 +73,10 @@ class ImageTestClass(TestCase):
         images = Image.get_images()
         self.assertEqual(len(images),1)
 
+    def test_get_image_by_id(self):
+        pass
+
+
 class CommentTestClass(TestCase):
     def setUp(self):
         #set up user class
