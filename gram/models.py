@@ -26,6 +26,9 @@ class Image(models.Model):
     class Meta:
         ordering = ['upload_date']
 
+    def save_image(self):
+        self.save()
+
 class Comment(models.Model):
     comments = models.CharField(max_length=60,blank=True,null=True)
     comment_date = models.DateTimeField(auto_now_add=True)

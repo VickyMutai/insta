@@ -31,10 +31,26 @@ class ProfileTestClass(TestCase):
 
 class ImageTestClass(TestCase):
     def setUp(self):
-        self.car=Image(caption="legacy goals",likes=200)
+        #set up user class
+        self.new_user = User(username="vic",email="vic@mail.com")
+        self.new_user.save()
+        #set up for profile class
+        self.new_profile=Profile(bio="I am awesome",user=self.new_user)
+        self.new_profile.save()
+        #set up for Image class
+        self.car=Image(caption="legacy goals",likes=200,profile=self.new_profile)
+        self.car.save_image()
+
+    def tearDown(self):
+        Profile.objects.all().delete()
+        Image.objects.all().delete()
 
     def test_instance(self):
         self.assertTrue(isinstance(self.car,Image))
+
+    def test_save_image(self):
+        images = Image.objects.all()
+        self.assertTrue(len(images)>0)
 
 class CommentTestClass(TestCase):
     def setUp(self):
