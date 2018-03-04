@@ -5,6 +5,7 @@
     <div class="container mt-5">
     {% if user.is_authenticated %}
     {% for prof in profile %}
+    {% if prof.user.id == user.id %}
         <div class="row">
                 <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
                 {% if prof.profilePic %}
@@ -19,6 +20,9 @@
                 <p>{{prof.user | title}}</p>
                 <p>{{prof.bio}}</p>
                 {% endif %}
+            </div>
+        </div>
+    {% endif %}
     {% empty %}
     <div class="row">
         <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
@@ -29,16 +33,16 @@
             <button class="btn btn-default btn-sm"><a href="{% url 'edit' %}">Edit Profile</a></button>
         </div>
     </div>      
-            </div>
-        </div>
     {% endfor %}
         <hr>
+    <div class="row">
     {% for image in images %}
         {% if image.user.id == user.id %}
-            <img src="{{image.image.url}}" alt=""/>
+            <img src="{{image.image.url}}" class="img-thumbnail" alt=""/>
             {{image.caption}}
         {% endif %}
     {% endfor %}
     </div>
     {% endif %}
+</div>
 {% endblock %}
