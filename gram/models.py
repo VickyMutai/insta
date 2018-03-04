@@ -39,7 +39,7 @@ class Image(models.Model):
     caption = models.CharField(max_length = 60)
     upload_date = models.DateTimeField(auto_now_add=True)
     likes = models.IntegerField(blank=True, null=True)
-    profile = models.ForeignKey(Profile)
+    user = models.ForeignKey(User,blank=True,null=True)
 
     def __str__(self):
         return self.caption

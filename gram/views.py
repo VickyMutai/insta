@@ -21,6 +21,7 @@ def home(request):
 def profile(request):
     title = 'Insta-Gram'
     profile = Profile.get_profile()
+    image = Image.get_images()
     current_user = request.user
     if request.method == 'POST':
         form = EditProfileForm(request.POST,request.FILES)
@@ -32,7 +33,9 @@ def profile(request):
         form = EditProfileForm()
     return render(request,'profile/profile.html',{"title":title,
                                                   "form":form,
-                                                  "profile":profile,})
+                                                  "user":current_user,
+                                                  "profile":profile,
+                                                  "images":image})
 
 
 @login_required(login_url='/accounts/login/')

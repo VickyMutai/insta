@@ -33,7 +33,12 @@
         </div>
     {% endfor %}
         <hr>
+    {% for image in images %}
+        {% if image.user.id == user.id %}
+            <img src="{{image.image.url}}" alt=""/>
+            {{image.caption}}
+        {% endif %}
+    {% endfor %}
     </div>
     {% endif %}
-    {}
 {% endblock %}
