@@ -5,6 +5,7 @@
     <h1 class="text-center">{{test}}</h1>
 
     {% if user.is_authenticated %}
+        <p>Welcome to instagram @{{current_user}}</p>
         <button class="btn btn-info">
             <a href="/logout">LogOut</a>
         </button>

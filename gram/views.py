@@ -8,10 +8,12 @@ from .forms import EditProfileForm
 @login_required(login_url='/accounts/login/')
 def home(request):
     title = 'Insta-Gram'
+    current_user = request.user
     test =  'Awesomeness'
     image = Image.get_images()
     return render(request,'index.html',{"title":title,
                                         "test":test,
+                                        "current_user":current_user,
                                         "images":image,})
 
 
@@ -43,6 +45,7 @@ def settings(request):
 @login_required(login_url='/accounts/login/')
 def edit(request):
     title = 'Insta-Gram'
+    current_user = request.user
     if request.method == 'POST':
         form = EditProfileForm(request.POST,request.FILES)
         if form.is_valid():
