@@ -24,7 +24,7 @@ def profile(request):
     title = 'Insta-Gram'
     current_user = request.user
     profile = Profile.get_profile()
-    image = Image.objects.all()
+    image = Image.get_images()
     return render(request,'profile/profile.html',{"title":title,
                                                   "image":image,
                                                   "user":current_user,
