@@ -9,6 +9,7 @@ urlpatterns=[
     url(r'^settings/',views.settings,name='settings'),
     url(r'^edit/',views.edit,name='edit'),
     url(r'^upload_image/',views.upload,name='upload'),
+    url(r'^search/',views.search_results,name='search'),
 ]
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

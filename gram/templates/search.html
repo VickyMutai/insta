@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{block.super}}
+<div class="container mt-5">
+    <div class="row mt-5"></div>
+    <div class="row mt-5"></div>
+    <div class="row mt-5">
+        {% if username %}
+        <h2>Found{{username | length}} of searched name</h2>
+        {% else %}
+        <h2>Found 0 article for the searched name {{message}}</h2>
+        {% endif %}
+    </div>
+    <div class="row">
+        {% if username %}
+            {% for user in username %}
+            <h3>
+                <a href="#" class="btn btn-primary">{{user.user.username}}</a>
+            </h3>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -71,7 +71,7 @@ class Comment(models.Model):
     comments = models.CharField(max_length=60,blank=True,null=True)
     comment_date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User)
-    image = models.ForeignKey(Image)
+    image = models.ForeignKey(Image,blank=True,null=True)
     profile = models.ForeignKey(Profile,blank=True,null=True)
 
     def __str__(self):

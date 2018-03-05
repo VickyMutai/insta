@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse,Http404
 from .models import Image,Profile,Comment
-from .forms import EditProfileForm,UploadForm
+from .forms import EditProfileForm,UploadForm,CommentForm
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
@@ -10,11 +10,18 @@ def home(request):
     title = 'Insta-Gram'
     current_user = request.user
     profile = Profile.get_profile()
-    test =  'Awesomeness'
     image = Image.get_images()
+    if request.method == 'POST':
+        form = CommentForm(request.POST,request.FILES)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = current_user
+            comment.save()
+    else:
+        form = CommentForm()
     return render(request,'index.html',{"title":title,
-                                        "test":test,
                                         "profile":profile,
+                                        "form":form,
                                         "current_user":current_user,
                                         "images":image,})
 
@@ -70,3 +77,16 @@ def upload(request):
     return render(request,'upload/new.html',{"title":title,
                                                   "user":current_user,
                                                   "form":form})
+
+@login_required(login_url="/accounts/login/")
+def search_results(request):
+    if 'username' in request.GET and request.GET["username"]:
+        search_term = request.GET.get("username")
+        searched_name = Profile.find_profile(search_term)
+        message = f"search_term"
+
+        return render(request,'search.html',{"message":message,
+                                             "username":searched_name})
+    else:
+        message = "You haven't searched for any term"
+        return render(request,'search.html',{"message":message})
