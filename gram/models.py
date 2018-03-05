@@ -2,9 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-
+DEFAULT = 'profile/avatar.png'
 class Profile(models.Model):
-    profilePic = models.ImageField(upload_to='profile/',blank=True,null=True)
+    profilePic = models.ImageField(upload_to='profile/',default=DEFAULT)
     bio = models.CharField(max_length=60,blank=True)
     user = models.ForeignKey(User)
 

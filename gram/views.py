@@ -9,10 +9,12 @@ from .forms import EditProfileForm
 def home(request):
     title = 'Insta-Gram'
     current_user = request.user
+    profile = Profile.get_profile()
     test =  'Awesomeness'
     image = Image.get_images()
     return render(request,'index.html',{"title":title,
                                         "test":test,
+                                        "profile":profile,
                                         "current_user":current_user,
                                         "images":image,})
 
@@ -20,19 +22,10 @@ def home(request):
 @login_required(login_url='/accounts/login/')
 def profile(request):
     title = 'Insta-Gram'
+    current_user = request.user
     profile = Profile.get_profile()
     image = Image.get_images()
-    current_user = request.user
-    if request.method == 'POST':
-        form = EditProfileForm(request.POST,request.FILES)
-        if form.is_valid():
-            update = form.save(commit=False)
-            update.user = current_user
-            update.save()
-    else:
-        form = EditProfileForm()
     return render(request,'profile/profile.html',{"title":title,
-                                                  "form":form,
                                                   "user":current_user,
                                                   "profile":profile,
                                                   "images":image})
