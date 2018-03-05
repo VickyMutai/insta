@@ -72,9 +72,13 @@ class Comment(models.Model):
     comment_date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User)
     image = models.ForeignKey(Image)
+    profile = models.ForeignKey(Profile,blank=True,null=True)
 
     def __str__(self):
         return self.comments
+
+    class Meta:
+        ordering = ['-comment_date']
 
     def save_comment(self):
         return self.save()
