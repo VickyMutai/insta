@@ -8,6 +8,7 @@ urlpatterns=[
     url(r'^profile/',views.profile, name='profile'),
     url(r'^settings/',views.settings,name='settings'),
     url(r'^edit/',views.edit,name='edit'),
+    url(r'^upload_image/',views.upload,name='upload'),
 ]
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

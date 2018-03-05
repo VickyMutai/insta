@@ -27,10 +27,30 @@
         <hr>
     </div>
     <hr>
-    {% for image in images%}
-    {% if image.user.id == user.id %}
-        <img src="{{image.image.url}}" alt="" class="img-thumbnail">
-    {% endif %}
-    {% endfor %}
+
+    
+    <div class="container">
+        <div class="row">
+                {% for img in image%}
+            {% if img.user.id == user.id %}
+            <div class="col-md-4 col-lg-4 col-sm-3 col-xs-3">
+                    {% if img.image %}
+                    <div class="card">
+                        <div class="card-header">
+                                {{img.profile}}
+                            <img src="{{img.profile.image.url}}" alt="{{user.username}}" class="img-thumbnail">
+                        </div>
+                        <div class="card-body">
+
+                        </div>
+                    </div>
+                        <img src="{{img.image.url}}" alt="">
+                        <p>{{img.caption}}</p>
+                    {% endif %}
+            </div>
+            {% endif %}
+            {% endfor %}   
+        </div>
+    </div> 
 </div>
 {% endblock %}
