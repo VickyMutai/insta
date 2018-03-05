@@ -23,13 +23,7 @@
                                         <h6>{{img.upload_date | timesince}} ago</h6>
                                 </div>
                                 <div class="card-footer">
-                                        <form action="{%url 'home' %}" method="post" enctype="multipart/form-data">
-                                                {% csrf_token %}
-                                                {% bootstrap_form form %}
-                                                <div class="form-group">
-                                                <input type="submit" class="btn btn-info btn-sm" value="Post">      
-                                                </div>      
-                                        </form>
+                                        <p><a href="/comment.html">Add comment</a></p>
                                 </div>
                         </div>
                         {% endif %}

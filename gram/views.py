@@ -54,6 +54,7 @@ def edit(request):
         if form.is_valid():
             update = form.save(commit=False)
             update.user = current_user
+            update.profile = myprofile
             update.save()
             return redirect('profile')
     else:
@@ -65,16 +66,19 @@ def edit(request):
 def upload(request):
     title = 'Insta-Gram'
     current_user = request.user
-    if request.method == 'POST':
-        form = UploadForm(request.POST,request.FILES)
-        if form.is_valid():
-            upload = form.save(commit=False)
-            upload.user = current_user
-            upload.save()
-            return redirect('home')
-    else:
+    profiles = Profile.get_profile()
+    for profile in profiles:
+        if request.method == 'POST':
+            form = UploadForm(request.POST,request.FILES)
+            if form.is_valid():
+                upload = form.save(commit=False)
+                upload.user = current_user
+                upload.profile = profile
+                upload.save()
+                return redirect('home')
+        else:
             form = UploadForm()
-    return render(request,'upload/new.html',{"title":title,
+        return render(request,'upload/new.html',{"title":title,
                                                   "user":current_user,
                                                   "form":form})
 
