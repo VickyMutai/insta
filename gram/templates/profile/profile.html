@@ -1,15 +1,19 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
 {% block content %}
+{{block.super}}}
+<div class="container mt-5"></div>
 <div class="container mt-5">
-    <div class="row">
+    <div class="row mt-5"></div>
+    <div class="row mt-5">
         {% for prof in profile %}
         {% if user.id == prof.user.id %}
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 {% if prof.profilePic %}
-                    <img src="{{prof.profilePic.url}}" alt="" class="img-thumbnail rounded-circle">
+                    <img src="{{prof.profilePic.url}}" alt="" class="img-fluid center-block rounded-circle">
                 {% else %}
-                    <img src="/static/img/avatar.png" alt="" class="img-thumbnail rounded-circle">
+                    <img src="/static/img/avatar.png" alt="" class="img-fluid rounded-circle">
                 {% endif %}
             </div>
             <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1"></div>
@@ -41,11 +45,10 @@
                             <img src="{{img.profile.image.url}}" alt="{{user.username}}" class="img-thumbnail">
                         </div>
                         <div class="card-body">
-
+                                <img src="{{img.image.url}}" alt="">
+                                <p>{{img.caption}}</p>
                         </div>
                     </div>
-                        <img src="{{img.image.url}}" alt="">
-                        <p>{{img.caption}}</p>
                     {% endif %}
             </div>
             {% endif %}
