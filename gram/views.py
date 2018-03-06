@@ -11,27 +11,29 @@ def home(request):
     current_user = request.user
     profile = Profile.get_profile()
     image = Image.get_images()
+    comments = Comment.get_comment()
     return render(request,'index.html',{"title":title,
                                         "profile":profile,
+                                        "comments":comments,
                                         "current_user":current_user,
                                         "images":image,})
 
 @login_required(login_url='/accounts/login/')
 def new_comment(request,pk):
-    post = get_object_or_404(Image, pk=pk)
+    image = get_object_or_404(Image, pk=pk)
     current_user = request.user
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.image = image
-            comment.author = current_user
+            comment.user = current_user
             comment.save()
             return redirect('home')
     else:
         form = CommentForm()
     return render(request, 'comment.html', {"user":current_user,
-                                            "comment_form":forms})
+                                            "comment_form":form})
 
 @login_required(login_url='/accounts/login/')
 def profile(request):

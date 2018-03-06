@@ -8,7 +8,7 @@
                         <div class="col-md-2 col-lg-2 col-xs-1 col-sm-1"></div>
                         
                         <div class="col-md-8 col-lg-8 col-xs-9 col-sm-9">
-                        <p>Hello are you new here? <a href="{% url 'edit' %}" class="btn btn-primary">Edit Profile</a></p>
+                        <p>Hello <b>{{user | title}}</b> are you new here? <a href="{% url 'edit' %}" class="btn btn-primary">Edit Profile</a></p>
                                 {% for img in images %}
                                 {% if img.image %}
                                 <div class="card">
@@ -22,13 +22,20 @@
                                         </div>
                                         <div class="card-body">
                                                 <img src="{{img.image.url}}" alt="" class="img-fluid" style="width:200%; height:200%">     
+                                                <br><br>
                                                 <div class="row">
-                                                        <p><a href=""><b>{{img.user.username}}</b></a> {{img.caption}}</p>  
+                                                        <p style="padding: 8px"><a href=""><b>{{img.user.username}}</b></a> {{img.caption}}</p>  
                                                 </div>
                                                 <h6>{{img.upload_date | timesince}} ago</h6>
+                                                <hr>
+                                                {% for comment in comments %}
+                                                {% if img.id == comment.image.id %}
+                                                <p><b>{{comment.user}}</b>  {{comment.comments}}</p>
+                                                {% endif %}
+                                                {% endfor %}
                                         </div>
                                         <div class="card-footer">
-                                                <p><a href="#">Add comment</a></p>
+                                                <p><a href="{% url 'comment' pk=img.id %}">Add comment</a></p>
                                         </div>
                                 </div>
                                 {% endif %}
