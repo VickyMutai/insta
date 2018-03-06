@@ -22,7 +22,14 @@
                                         </div>
                                         <div class="card-body">
                                                 <img src="{{img.image.url}}" alt="" class="img-fluid" style="width:200%; height:200%">     
-                                                <br><br>
+                                                <hr>
+                                                <div class="icons mt-3">
+                                                                <a href="#" style="color:inherit;"><i class="far fa-heart fa-2x ml-4"></i></a>
+                                                                <a href="{% url 'comment' pk=img.id %}" style="color:inherit;"><i class="far fa-comment fa-2x ml-4"></i></a>
+                                                      
+                                                                <a href="#" style="color:inherit;"><i class="far fa-bookmark fa-2x float-right mr-4"></i></a>
+                                                              </div>
+                                                <br>
                                                 <div class="row">
                                                         <p style="padding: 8px"><a href=""><b>{{img.user.username}}</b></a> {{img.caption}}</p>  
                                                 </div>

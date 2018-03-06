@@ -15,8 +15,13 @@
     <div class="row">
         {% if username %}
             {% for user in username %}
-            <h3>
-                <a href="#" class="btn btn-primary">{{user.user.username}}</a>
+            <img src="{{user.profilePic.url}}" alt="" class="img-fluid" style="border-radius:50%">
+            <h3 class="mt-5">
+                    {% if user.user.id == user.id %}
+                    <a href="{% url 'profile' %}" class="btn btn-primary mt-3 ml-5">{{user.user.username}}</a>
+                    {% else %}
+                    <a href="#" class="btn btn-primary mt-3 ml-5">{{user.user.username}}</a>
+                    {% endif %}
             </h3>
             {% endfor %}
         {% endif %}
