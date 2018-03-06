@@ -1,7 +1,10 @@
-<form action="{%url 'home' %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    <div class="form-group">
-    <input type="submit" class="btn btn-info btn-sm" value="Post">      
-    </div>      
-</form>
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container">
+  <form  method="post">
+    {%csrf_token%} {% bootstrap_form comment_form %}
+      <input type="submit" class="btn btn-light" value="Post">
+  </form>
+</div>
+{% endblock %}

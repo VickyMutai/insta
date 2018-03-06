@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse,Http404
 from .models import Image,Profile,Comment
@@ -11,20 +11,27 @@ def home(request):
     current_user = request.user
     profile = Profile.get_profile()
     image = Image.get_images()
-    if request.method == 'POST':
-        form = CommentForm(request.POST,request.FILES)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.user = current_user
-            comment.save()
-    else:
-        form = CommentForm()
     return render(request,'index.html',{"title":title,
                                         "profile":profile,
-                                        "form":form,
                                         "current_user":current_user,
                                         "images":image,})
 
+@login_required(login_url='/accounts/login/')
+def new_comment(request,pk):
+    post = get_object_or_404(Image, pk=pk)
+    current_user = request.user
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.image = image
+            comment.author = current_user
+            comment.save()
+            return redirect('home')
+    else:
+        form = CommentForm()
+    return render(request, 'comment.html', {"user":current_user,
+                                            "comment_form":forms})
 
 @login_required(login_url='/accounts/login/')
 def profile(request):

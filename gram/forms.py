@@ -14,5 +14,5 @@ class UploadForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        exclude = ['user','comment_date','image','profile']
+        exclude = ['user','comment_date','image',]
     
