@@ -63,7 +63,6 @@ def edit(request):
         if form.is_valid():
             update = form.save(commit=False)
             update.user = current_user
-            update.profile = myprofile
             update.save()
             return redirect('profile')
     else:
