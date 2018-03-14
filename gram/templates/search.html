@@ -17,7 +17,7 @@
             {% for user in username %}
             <img src="{{user.profilePic.url}}" alt="" class="img-fluid" style="border-radius:50%">
             <h3 class="mt-5">
-                    <a href="#" class="btn btn-primary mt-3 ml-5">{{user.user.username}}</a>
+                    <a href="{% url 'yourprofile' pk=user.user.id %}" class="btn btn-primary mt-3 ml-5">{{user.user.username}}</a>
             </h3>
             {% endfor %}
         {% endif %}

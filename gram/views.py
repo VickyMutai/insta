@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse,Http404
 from .models import Image,Profile,Comment
 from .forms import EditProfileForm,UploadForm,CommentForm
+from django.contrib.auth.models import User
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
@@ -17,23 +18,6 @@ def home(request):
                                         "comments":comments,
                                         "current_user":current_user,
                                         "images":image,})
-
-@login_required(login_url='/accounts/login/')
-def new_comment(request,pk):
-    image = get_object_or_404(Image, pk=pk)
-    current_user = request.user
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.image = image
-            comment.user = current_user
-            comment.save()
-            return redirect('home')
-    else:
-        form = CommentForm()
-    return render(request, 'comment.html', {"user":current_user,
-                                            "comment_form":form})
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
@@ -110,7 +94,27 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request,'search.html',{"message":message})
 
+@login_required(login_url='/accounts/login/')
+def new_comment(request,pk):
+    image = get_object_or_404(Image, pk=pk)
+    current_user = request.user
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.image = image
+            comment.user = current_user
+            comment.save()
+            return redirect('home')
+    else:
+        form = CommentForm()
+    return render(request, 'comment.html', {"user":current_user,
+                                            "comment_form":form})
+
 @login_required(login_url="/accounts/login/")
-def view_your_profile(request):
+def view_your_profile(request,pk):
     title =  "Insta-gram"
-    return render(request)
+    current_user = request.user
+    user = get_object_or_404(User, pk=pk)
+    return render(request,'profile/view.html',{"user":current_user,
+                                               "my_user":user,})

@@ -17,7 +17,7 @@
                                                 {% if profile.user.id == img.user.id %}
                                                 <a href="{% url 'profile' %}">{{img.user.username}}</a>
                                                 {% else %}
-                                                <a href="#">{{img.user.username}}</a>
+                                                <a href="{% url 'yourprofile' pk=img.user.id %}">{{img.user.username}}</a>
                                                 {% endif %}
                                         </div>
                                         <div class="card-body">
@@ -35,6 +35,7 @@
                                                 </div>
                                                 <h6>{{img.upload_date | timesince}} ago</h6>
                                                 <hr>
+                                                
                                                 {% for comment in comments %}
                                                 {% if img.id == comment.image.id %}
                                                 <p><b>{{comment.user}}</b>  {{comment.comments}}</p>
