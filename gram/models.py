@@ -40,6 +40,7 @@ class Image(models.Model):
     upload_date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
+    likes = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.caption
