@@ -118,3 +118,14 @@ def view_your_profile(request,pk):
     user = get_object_or_404(User, pk=pk)
     return render(request,'profile/view.html',{"user":current_user,
                                                "my_user":user,})
+
+@login_required(login_url="/accounts/login/")
+def like(request,operation,pk):
+    image = get_object_or_404(Image,pk=pk)
+    if operation == 'like':
+        image.likes += 1
+        image.save()
+    elif operation =='unlike':
+        image.likes -= 1
+        image.save()
+    return redirect('home')
