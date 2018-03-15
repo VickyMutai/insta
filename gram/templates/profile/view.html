@@ -23,7 +23,7 @@
         <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1"></div>
         <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5">
             {% if prof.bio %}
-                <h5>{{prof.user.username | title}}</h5>
+                <h5>{{prof.user.username | title}}  <button class="btn btn-primary" href="#">Follow</button></h5> 
                 <p>{{prof.bio}}</p>
             {% else %}
                 <h5>{{prof.user.username | title}}</h5>
