@@ -39,7 +39,7 @@
                                                 </div>
                                                 {% endif %}
                                                 <div class="row">
-                                                        <h5 style="padding: 8px"><a href=""><b>{{img.user.username}}</b></a> {{img.caption}}</h5>  
+                                                        <h5 style="padding: 8px"><a href="{% url 'yourprofile' pk=img.user.id %}"><b>{{img.user.username}}</b></a> {{img.caption}}</h5>  
                                                 </div>
                                                 <h6>{{img.upload_date | timesince}} ago</h6>
                                                 <hr>

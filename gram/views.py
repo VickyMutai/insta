@@ -115,9 +115,15 @@ def new_comment(request,pk):
 def view_your_profile(request,pk):
     title =  "Insta-gram"
     current_user = request.user
+    image = Image.get_images()
+    profile = Profile.get_profile()
+    comment = Comment.get_comment()
     user = get_object_or_404(User, pk=pk)
     return render(request,'profile/view.html',{"user":current_user,
-                                               "my_user":user,})
+                                               "images":image,
+                                               "my_user":user,
+                                               "comments":comment,
+                                               "profile":profile})
 
 @login_required(login_url="/accounts/login/")
 def like(request,operation,pk):
