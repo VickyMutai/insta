@@ -7,12 +7,17 @@
 * Browser
 * Good internet connection
 
+- For developers view the specifications [here](https://github.com/VickyMutai/insta/blob/master/specs.md)
+
 ## How to use
-* Open the site - link [here](https://galleryvic.herokuapp.com/)
-* View images based on clicked categories.
-* View locations for the various images.
-* Search the categories for the image.
-* Click on the view details button to get more details of the image
+* Open the site - link [here](https://the-grammy.herokuapp.com/)
+* Create an account if you are new or login to application
+* Create profile by clicking on create profile
+* Upload image.
+* Search for different users using their username.
+* Click on username to view profile.
+* Comment and like different images.
+* View your own profile.
 
 
 ## Technologies used
@@ -23,8 +28,11 @@
 ###### Deployment
 * HEROKU
 
+### KNOWN BUGS
+- Images disappear after a while
+
 ### Meta
-Email me at - [Victoria Mutai](mailto:vicky.mutai96@gmail.com)
+Incase of any queries, email me at - [Victoria Mutai](mailto:vicky.mutai96@gmail.com)
 <br>
 Github - [VickyMutai](https://github.com/VickyMutai)
 
