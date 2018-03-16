@@ -9,7 +9,7 @@ class EditProfileForm(forms.ModelForm):
 class UploadForm(forms.ModelForm):
     class Meta:
         model = Image
-        exclude = ['user','upload_date','profile']
+        exclude = ['user','likes','upload_date','profile']
 
 class CommentForm(forms.ModelForm):
     class Meta:
